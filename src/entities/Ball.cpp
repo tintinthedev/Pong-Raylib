@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include "../globals/globals.h"
 #include <raylib.h>
 
 Ball::Ball(int x, int y, int speed_x, int speed_y, int radius, std::vector<Paddle*> colliders)
@@ -13,7 +14,7 @@ Ball::Ball(int x, int y, int speed_x, int speed_y, int radius, std::vector<Paddl
 
 void Ball::Draw()
 {
-    DrawCircle(this->x, this->y, this->radius, LIME);
+    DrawCircle(this->x, this->y, this->radius, Yellow);
 }
 
 void Ball::Update()
