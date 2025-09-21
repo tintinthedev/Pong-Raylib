@@ -2,7 +2,7 @@
 #include "../globals/globals.h"
 #include <raylib.h>
 
-Ball::Ball(int x, int y, int speed_x, int speed_y, int radius, std::vector<Paddle*> colliders)
+Ball::Ball(int x, int y, int speed_x, int speed_y, int radius, std::vector<Paddle*> colliders, Particles* particlesSystem)
 {
     this->x = x;
     this->y = y;
@@ -10,6 +10,7 @@ Ball::Ball(int x, int y, int speed_x, int speed_y, int radius, std::vector<Paddl
     this->speed_y = speed_y;
     this->radius = radius;
     this->colliders = colliders;
+    this->particlesSytem = particlesSystem;
 }
 
 void Ball::Draw()
@@ -36,6 +37,7 @@ void Ball::CollisionCheck()
             continue;
 
         this->speed_x *= -1;
+        this->particlesSytem->Emit(10, WHITE, this->getCenter());
     }
 }
 
