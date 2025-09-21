@@ -4,23 +4,29 @@
 #include "entities/Paddle.h"
 #include "entities/Enemy.h"
 #include "menu/Menu.h"
+#include "systems/Particles.h"
+#include <cstdlib>
+#include <ctime>
 
 int main()
 {
   InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
   SetTargetFPS(60);
 
+  Particles* particlesSystem = new Particles();
+
   Paddle* player = new Paddle(20, WINDOW_HEIGHT / 2 - 50, 20, 100);
   Enemy* enemy = new Enemy(WINDOW_WIDTH - 20 * 2, (WINDOW_HEIGHT - 100) / 2, 20, 100);
 
   std::vector<Paddle*> colliders = {player, enemy};
-  Ball* ball = new Ball(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 7, 7, 20, colliders);
+  Ball* ball = new Ball(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 7, 7, 20, colliders, particlesSystem);
 
   int playerScore = 0;
   int aiScore = 0;
 
   do
   {
+    srand(time(nullptr)); 
     BeginDrawing();
     ClearBackground(DarkGreen);
 
@@ -36,6 +42,9 @@ int main()
 
     enemy->Draw();
     enemy->Update(*ball);
+
+    particlesSystem->Draw();
+    particlesSystem->Update();
 
     if(ball->x >= GetScreenWidth())
     {
