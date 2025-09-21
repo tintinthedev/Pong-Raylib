@@ -11,7 +11,7 @@ Paddle::Paddle(int x, int y, int width, int height)
 
 void Paddle::Draw()
 {
-    DrawRectangle(this->x, this->y, this->width, this->height, WHITE);
+    DrawRectangleRounded(Rectangle{(float)this->x, (float)this->y, (float)this->width, (float)this->height}, 10, 0, WHITE);
 }
 
 void Paddle::Update()
