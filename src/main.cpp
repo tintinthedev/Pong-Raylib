@@ -22,7 +22,11 @@ int main()
   do
   {
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(DarkGreen);
+
+    DrawRectangle(0, 0, GetScreenWidth() / 2, GetScreenHeight(), Green);
+
+    DrawCircle(GetScreenWidth() / 2, GetScreenHeight() / 2, 130, LightGreen);
 
     ball->Draw();
     ball->Update();
